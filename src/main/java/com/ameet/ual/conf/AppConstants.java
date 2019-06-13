@@ -5,6 +5,7 @@ package com.ameet.ual.conf;
  */
 public class AppConstants {
     public static String INPUT = "src/main/resources/pnr.csv";
+    public static String SCH_FILE = "src/main/resources/sch.csv";
     public static String OUT_TOP = "out";
     public static String OUT = OUT_TOP + "/wc";
     public static String SEGMENT_COLNAME = "segments";
