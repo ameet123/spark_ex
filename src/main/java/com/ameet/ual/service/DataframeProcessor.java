@@ -8,8 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.ameet.ual.conf.AppConstants.*;
-import static org.apache.spark.sql.functions.regexp_replace;
-import static org.apache.spark.sql.functions.split;
+import static org.apache.spark.sql.functions.*;
 
 /**
  * ameet.chaubal on 6/13/2019.
@@ -33,6 +32,10 @@ public class DataframeProcessor {
                         )
                 ).drop(SEGMENT_COLNAME);
         return allRowDF;
+    }
+
+    public Dataset<Row> explodeArray(Dataset<Row> df, String column) {
+        return df.withColumn("bid", explode(df.col(column)));
     }
 
     public Dataset<Row> createSchDF() {

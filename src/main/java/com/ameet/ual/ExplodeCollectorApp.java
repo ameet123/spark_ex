@@ -12,6 +12,7 @@ import scala.Serializable;
 import java.io.IOException;
 
 import static com.ameet.ual.conf.AppConstants.HADOOP_HOME;
+import static com.ameet.ual.conf.AppConstants.SEGMENT_ARRAY_COLNAME;
 import static com.ameet.ual.utils.AppUtils.info;
 
 /**
@@ -37,6 +38,9 @@ public class ExplodeCollectorApp implements Serializable {
 
         Dataset<Row> schDF = dfProcessor.createSchDF();
         info(schDF);
+
+        Dataset<Row> allRowExplodedDF = dfProcessor.explodeArray(allRowDF, SEGMENT_ARRAY_COLNAME);
+        info(allRowExplodedDF);
     }
 
     public static void main(String[] args) throws IOException {
