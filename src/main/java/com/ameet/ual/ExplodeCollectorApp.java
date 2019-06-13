@@ -1,5 +1,6 @@
 package com.ameet.ual;
 
+import com.ameet.ual.model.Booking;
 import com.ameet.ual.service.DataframeProcessor;
 import com.ameet.ual.utils.AppUtils;
 import org.apache.spark.sql.Dataset;
@@ -44,6 +45,11 @@ public class ExplodeCollectorApp implements Serializable {
         LOGGER.info(">>[4] Performing JOIN:");
         Dataset<Row> allRowSCHJoinDF = dfProcessor.leftOuterJoin(allRowExplodedDF, schDF, allRowJOINCols, schJOINCols);
         info(allRowSCHJoinDF);
+
+        LOGGER.info(">>[5] Transform to booking");
+        Dataset<Booking> bookingTransformDF = dfProcessor.transformToBooking(allRowSCHJoinDF);
+        bookingTransformDF.printSchema();
+        bookingTransformDF.show();
     }
 
     public static void main(String[] args) throws IOException {

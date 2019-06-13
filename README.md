@@ -5,10 +5,10 @@
 This application aims to demonstrate `explode` and `collection` functionality in spark, along with transformations.
 
 ### Status
-+ read DF - done
-+ array convert - done
-+ explode - done
-+ join - done
++ read DF - *done*
++ array convert - *done*
++ explode - *done*
++ join - *done*
 
 ### Flow
 ![flow](image/flow.png)

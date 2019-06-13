@@ -1,10 +1,9 @@
 package com.ameet.ual.service;
 
 import com.ameet.ual.conf.AppConstants;
-import org.apache.spark.sql.Column;
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Row;
-import org.apache.spark.sql.SparkSession;
+import com.ameet.ual.model.Booking;
+import org.apache.spark.api.java.function.MapFunction;
+import org.apache.spark.sql.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -77,4 +76,12 @@ public class DataframeProcessor {
         return joinDF;
     }
 
+    public Dataset<Booking> transformToBooking(Dataset<Row> df) {
+        return df.map(
+                (MapFunction<Row, Booking>) x ->
+                        new Booking(x.<String>getAs("bid"), x.<String>getAs("booking_name"),
+                                x.<String>getAs("booking_city")
+                        ), Encoders.bean(Booking.class)
+        );
+    }
 }
