@@ -1,0 +1,8 @@
+%2F%2F Cool Class Diagram,
+[AllRowDF{bg:springgreen}]-.->[Explode Array{bg:peachpuff}]
+[Explode Array{bg:peachpuff}]->[AllRowExplodedDF{bg:springgreen}]
+[SchDF{bg:springgreen}]-.-[JOIN DF{bg:peachpuff}]
+[AllRowExplodedDF{bg:springgreen}]-.-[JOIN DF{bg:peachpuff}]
+ [JOIN DF{bg:peachpuff}]->[AllRow__SCH_DF{bg:springgreen}]
+[AllRow__SCH_DF{bg:springgreen}]-.->[Booking transform{bg:peachpuff}]
+[Booking transform{bg:peachpuff}]->[Final BookingDF{bg:tomato}]
