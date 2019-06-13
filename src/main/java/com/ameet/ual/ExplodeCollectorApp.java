@@ -11,8 +11,7 @@ import scala.Serializable;
 
 import java.io.IOException;
 
-import static com.ameet.ual.conf.AppConstants.HADOOP_HOME;
-import static com.ameet.ual.conf.AppConstants.SEGMENT_ARRAY_COLNAME;
+import static com.ameet.ual.conf.AppConstants.*;
 import static com.ameet.ual.utils.AppUtils.info;
 
 /**
@@ -41,6 +40,10 @@ public class ExplodeCollectorApp implements Serializable {
 
         Dataset<Row> allRowExplodedDF = dfProcessor.explodeArray(allRowDF, SEGMENT_ARRAY_COLNAME);
         info(allRowExplodedDF);
+
+        LOGGER.info(">>[4] Performing JOIN:");
+        Dataset<Row> allRowSCHJoinDF = dfProcessor.leftOuterJoin(allRowExplodedDF, schDF, allRowJOINCols, schJOINCols);
+        info(allRowSCHJoinDF);
     }
 
     public static void main(String[] args) throws IOException {
